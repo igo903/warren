@@ -55,5 +55,16 @@
     </navigator>
   </view>
 
+  
+
+  
+  <button type="primary" bindtap="addMall">添加商品</button>
+  <button type="primary" bindtap="getMall">获取商品</button>
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+
+  <view wx:for="{{list}}" bindtap="toDetail" id="{{item._id}}" class="item">
+    <text>{{item.title}}</text>
+    <image lazy-load="true" src="{{item.image}}" mode="aspectFit"></image>
+  </view>
 
 </view>

@@ -1,5 +1,6 @@
 //index.js
 const app = getApp()
+const db = wx.cloud.database()
 
 Page({
   data: {
@@ -7,7 +8,80 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    list:[]
+  },
+
+  addMall(){
+    // db.collection('emall').add({
+    //   data:{
+    //     title:'商品',
+    //     price:18,
+    //     tags:['books','foods','water']
+    //   },
+    //   success:res=>{
+    //     console.log(res)
+    //     wx.showToast({
+    //       title: '新增成功',
+    //     })
+    //   }
+    // })
+
+    wx.chooseImage({
+      count:1,
+      success: (res) => {
+        const filePath = res.tempFilePaths[0]
+        const tempFile = filePath.split('.')
+        const cloudPath = 'panda-img-' + tempFile[tempFile.length - 2]
+        wx.cloud.uploadFile({
+          cloudPath,
+          filePath,
+          success:res =>{
+            console.log(res)
+            db.collection('emall').add({
+              data:{
+                title:'商品',
+                price:18,
+                tags:['books','foods','water'],
+                image:res.fileID
+              },
+              success:ret=>{
+                console.log(ret)
+                wx.showToast({
+                  title: '新增成功',
+                })
+              }
+            })
+          }
+        })
+        console.log(res)
+      },
+    })
+
+  },
+
+  toDetail(e){
+    const id = e.currentTarget.id
+    wx.navigateTo({
+      url: '/pages/detail/detail?id='+id
+    })
+  },
+
+  getMall(){
+    db.collection('emall').get({
+      success:(res) => {
+        this.setData({
+          list: res.data
+        })
+        wx.hideLoading()
+      }
+    })
+  },
+
+  getPhoneNumber (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
   },
 
   onLoad: function() {
@@ -17,6 +91,12 @@ Page({
       })
       return
     }
+
+    wx.showLoading({
+      title: '加载中...',
+    })
+
+    this.getMall()
 
     // 获取用户信息
     wx.getSetting({
@@ -37,22 +117,35 @@ Page({
   },
 
   onGetUserInfo: function(e) {
+
     if (!this.data.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
+      wx.cloud.callFunction({
+        name:'login',
+        success: res=>{
+          e.detail.userInfo.openid = res.result.openid
+          app.globalData.userInfo = e.detail.userInfo
+          this.setData({
+            logged: true,
+            avatarUrl: e.detail.userInfo.avatarUrl,
+            userInfo: e.detail.userInfo
+          })
+          wx.setStorageSync('userInfo', e.detail.userInfo)
+        }
       })
     }
+    
   },
 
-  onGetOpenid: function() {
+  onGetOpenid: function(e) {
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
-      data: {},
+      data: {
+        a:10,
+        b:20
+      },
       success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.appid)
+        console.log('[云函数] [login] user openid: ', res.result)
         app.globalData.openid = res.result.openid
         wx.navigateTo({
           url: '../userConsole/userConsole',

@@ -1,0 +1,6 @@
+<!--pages/detail/detail.wxml-->
+<view>
+  <text>详情页面</text>
+  <view>{{id}}</view>
+</view>
+
