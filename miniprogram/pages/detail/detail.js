@@ -1,21 +1,40 @@
 // pages/detail/detail.js
+const db = wx.cloud.database()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    id:''
+    id:'',
+    info:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    //console.log(options)
     this.setData({
       id: options.id
     })
+
+    const ins = db.collection('emall').doc(options.id)
+    ins.update({
+      data:{
+        count:db.command.inc(1)
+      }
+    })
+    ins.get({
+      success:res=>{
+        this.setData({
+          info:res.data
+        })
+        console.log(res)
+      }
+    })
+
   },
 
   /**

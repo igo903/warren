@@ -1,6 +1,8 @@
 <!--pages/detail/detail.wxml-->
 <view>
   <text>详情页面</text>
-  <view>{{id}}</view>
+  <view>{{info._id}}</view>
+  <view>{{info.title}}</view>
+  <view>{{info.count}}</view>
 </view>
 

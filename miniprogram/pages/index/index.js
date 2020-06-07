@@ -11,22 +11,40 @@ Page({
     requestResult: '',
     list:[]
   },
+  onPullDownRefresh(){
+    this.getList(true)
+  },
+  onReachBottom(){
+    this.page += 1
+    this.getList()
+  },
+  getList(isInit){
+    const PAGE = 2
+    wx.showLoading({
+      title: 'Loading',
+    })
+    db.collection('emall').skip(this.page * PAGE).limit(PAGE).get({
+      success:res => {
+        console.log(999 + res.data)
+        
+        if(isInit){
+          this.setData({
+            list:res.data
+          })
+        } else {
+          //叠加
+          this.setData({
+            list:this.data.list.concat(res.data)
+          })
+          wx.stopPullDownRefresh()
+        }
+        wx.hideLoading()
+      }
+    })
+  },
+
 
   addMall(){
-    // db.collection('emall').add({
-    //   data:{
-    //     title:'商品',
-    //     price:18,
-    //     tags:['books','foods','water']
-    //   },
-    //   success:res=>{
-    //     console.log(res)
-    //     wx.showToast({
-    //       title: '新增成功',
-    //     })
-    //   }
-    // })
-
     wx.chooseImage({
       count:1,
       success: (res) => {
@@ -96,7 +114,8 @@ Page({
       title: '加载中...',
     })
 
-    this.getMall()
+    this.page = 0
+    this.getList(true)
 
     // 获取用户信息
     wx.getSetting({
