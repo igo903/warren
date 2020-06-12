@@ -9,7 +9,18 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    list:[]
+    list:[],
+    tops:[]
+  },
+  getTop(){
+    db.collection('emall').orderBy('count','desc').limit(4).get({
+      success:res=>{
+        console.log(res.data)
+        this.setData({
+          tops: res.data
+        })
+      }
+    })
   },
   onPullDownRefresh(){
     this.getList(true)
@@ -43,6 +54,21 @@ Page({
     })
   },
 
+  addCart(e){
+    //事件传递数据的一个方法dataset
+    const {item} = e.currentTarget.dataset
+    //查询是否已有购物数据
+    const i = app.globalData.carts.findIndex(v => v._id == item._id)
+    //如果找到这个元素了
+    if(i > -1){
+      app.globalData.carts[i].num += 1
+    } else {
+      item.num = 1
+      app.globalData.carts.push(item)
+    }
+    app.setTabbar()
+  },
+
 
   addMall(){
     wx.chooseImage({
@@ -60,6 +86,7 @@ Page({
               data:{
                 title:'商品',
                 price:18,
+                count:1,
                 tags:['books','foods','water'],
                 image:res.fileID
               },
@@ -102,7 +129,17 @@ Page({
     console.log(e.detail.encryptedData)
   },
 
+  onShareAppMessage(){
+    return {
+      title:'南国'
+    }
+  },
+
   onLoad: function() {
+    wx.showShareMenu()
+    
+    this.getTop()
+
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',

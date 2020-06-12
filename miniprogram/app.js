@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    this.setTabbar()
     
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -14,7 +15,21 @@ App({
         traceUser: true,
       })
     }
+  },
+  setTabbar(){
+    wx.setStorageSync('carts', this.globalData.carts)
+    const len = this.globalData.carts.reduce((sum, a) => sum+a.num, 0)
+    if(len >0){
+      wx.setTabBarBadge({
+        index: 1,
+        text: len + '',
+      })
+    }
+  },
 
-    this.globalData = {}
+  globalData:{
+    userInfo:null,
+    carts:wx.getStorageSync('carts') || []
   }
+
 })

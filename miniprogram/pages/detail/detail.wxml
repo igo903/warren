@@ -1,8 +1,9 @@
 <!--pages/detail/detail.wxml-->
 <view>
   <text>详情页面</text>
-  <view>{{info._id}}</view>
-  <view>{{info.title}}</view>
-  <view>{{info.count}}</view>
+  <view>页面id{{info._id}}</view>
+  <view>页面标题：{{info.title}}</view>
+  <view>浏览次数：{{info.count}}</view>
+  <button type="default" bindtap="payOrder">立即支付</button>
 </view>
 

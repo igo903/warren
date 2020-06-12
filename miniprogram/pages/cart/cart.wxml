@@ -1,0 +1,18 @@
+<view>
+  <view wx:for="{{carts}}" class="item-container">
+    <view>{{item.title}}</view>
+    <view>已添加购物车{{item.num}}份</view>
+    <button type="primary" data-index="{{index}}" bindtap="addCart">再加一份</button>
+  </view>
+
+  <view wx:if="{{address.userName}}">
+    <view>{{address.userName}}</view>
+    <view>{{address.detailInfo}}</view>
+  </view>
+  <button type="primary" class="btn" bindtap="order">总金额：{{total}}元下单</button>
+
+  <button type="default" open-type="contact">联系客服</button>
+  <view>关注公众号</view>
+  <official-account></official-account>
+
+</view>

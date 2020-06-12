@@ -11,6 +11,84 @@ Page({
     info:{}
   },
 
+  payOrder(){
+    wx.cloud.callFunction({
+      name:'pay0610',
+      data:{
+        goodId: this.data.id
+      },
+      success: res=>{
+        console.log('支付参数获取成功',res)
+        const payment = res.result.payment
+        wx.requestPayment({
+          ...payment,
+          success(res){
+            console.log('支付成功', res)
+            wx.hideLoading()
+          },
+          fail(res){
+            console.error('支付失败', res)
+          }
+        })
+      },
+      fail: res =>{
+        console.log('支付参数获取失败', res)
+      }
+    })
+  },
+
+
+  // payOrder(){
+
+  //   wx.cloud.callFunction({
+  //     name:'emall-pay',
+  //     
+  //     type:'unifiedorder',
+  //     data:{
+  //       goodId: this.data.id
+  //     },
+  //     success: result =>{
+  //       const data = result.data
+
+  //       //再次签名
+  //       wx.cloud.callFunction({
+  //         name:'emall-pay',
+  //         data:{
+  //           type:'orderquery',
+  //           data:{
+  //             out_trade_no: result.result.data.out_trade_no
+  //           }
+  //         },
+  //         success: queryRet =>{
+  //           const {
+  //             time_stamp,
+  //             nonce_str,
+  //             sign,
+  //             prepay_id,
+  //             body,
+  //             total_fee
+  //           } = queryRet.result.data
+
+  //           //拉起支付
+  //           wx.requestPayment({
+  //             nonceStr: nonce_str,
+  //             package: `prepay_id=${prepay_id}`,
+  //             paySign: sign,
+  //             signType: 'MD5',
+  //             timeStamp: time_stamp,
+  //             success(){
+  //               wx.hideLoading()
+  //             }
+  //           })
+
+  //         }
+  //       })
+  //     }
+  //   })
+  // },
+
+  
+
   /**
    * 生命周期函数--监听页面加载
    */

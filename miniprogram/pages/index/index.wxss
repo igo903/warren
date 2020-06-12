@@ -22,7 +22,7 @@ page {
 }
 
 .userinfo {
-  padding-left: 120rpx;
+  /* padding-left: 120rpx; */
 }
 
 .userinfo-avatar {
@@ -154,4 +154,12 @@ page {
 
 .item{
   margin-top: 200rpx;
+}
+
+.slide-image{
+  width:100%;
+  height:370rpx;
+}
+swiper{
+  width:100%;
 }
