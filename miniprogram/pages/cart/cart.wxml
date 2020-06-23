@@ -3,6 +3,7 @@
     <view>{{item.title}}</view>
     <view>已添加购物车{{item.num}}份</view>
     <button type="primary" data-index="{{index}}" bindtap="addCart">再加一份</button>
+    <button type="primary" data-index="{{index}}" bindtap="removeCart">减少一份</button>
   </view>
 
   <view wx:if="{{address.userName}}">

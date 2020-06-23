@@ -1,0 +1,23 @@
+<van-cell-group>
+  <van-cell title="{{task.title}}" value="" border="{{false}}" />
+  <van-cell 
+  wx:if="{{task.location}}"
+  title="位置"
+  icon="location"
+  bind:click="viewRoute"
+  value="{{task.location.name}}" 
+  border="{{false}}" />
+</van-cell-group>
+
+
+
+<image wx:if="{{task.image}}" src="{{task.image}}" mode="aspectFit"></image>
+<button open-type="getUserInfo" bindgetuserinfo="onInfo">获取用户信息</button>
+
+<button type="primary" bindtap="getQR">获取二维码</button>
+<image src="{{qr}}" mode="aspectFit"></image>
+<button type="primary" bindtap="sendSms">发验证码</button>
+
+<form report-submit="true" bindsubmit="onSubmit">
+  <button type="primary" bindtap="pushTpl">推送模板消息</button>
+</form>

@@ -39,6 +39,22 @@ Page({
     this.getTotal()
   },
 
+  removeCart(e){
+    const {index} = e.currentTarget.dataset
+    const carts = [...this.data.carts]
+    if(carts[index].num > 0){
+      carts[index].num -= 1
+    } else {
+      
+    }
+    this.setData({
+      carts
+    })
+    app.globalData.carts = carts
+    app.setTabbar()
+    this.getTotal()
+  },
+
   getTotal(){
     
     const total = this.data.carts.reduce((sum, val)=>sum + val.price*val.num, 0)

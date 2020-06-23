@@ -23,20 +23,22 @@ Page({
     })
   },
   onPullDownRefresh(){
-    this.getList(true)
+    this.getList(false)
   },
   onReachBottom(){
     this.page += 1
-    this.getList()
+    this.getList(false)
   },
   getList(isInit){
-    const PAGE = 2
+    console.log(isInit)
+
+    const PAGE = 4
     wx.showLoading({
       title: 'Loading',
     })
     db.collection('emall').skip(this.page * PAGE).limit(PAGE).get({
       success:res => {
-        console.log(999 + res.data)
+        //console.log(999 + res.data)
         
         if(isInit){
           this.setData({
@@ -104,6 +106,19 @@ Page({
     })
 
   },
+
+  deleteIt(e){
+    const abc = e.currentTarget.dataset
+    console.log(abc.item)
+    //console.log(e.currentTarget)
+    db.collection('emall').doc(abc.item._id).remove({
+      success: function(res) {
+        console.log(res)
+      }
+    })
+  },
+
+  
 
   toDetail(e){
     const id = e.currentTarget.id

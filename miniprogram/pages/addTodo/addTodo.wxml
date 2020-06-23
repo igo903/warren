@@ -1,0 +1,18 @@
+
+<form bindsubmit="onSubmit">
+  <button type="primary" bindtap="selectImage">添加图片</button>
+  <button type="warn" bindtap="myLocation">添加位置</button>
+  <block wx:if="{{image}}">
+    <image src="{{image}}" mode="aspectFill"></image>
+  </block>
+  <input name="title"></input>
+  <button form-type="submit" type="warn">提交</button>
+</form>
+
+<van-cell-group>
+  <block wx:for="{{tasks}}" wx:key="id">
+    <navigator url="../todoInfo/todoInfo?id={{item._id}}">
+      <van-cell title="{{item.title}}"/>
+    </navigator>
+  </block>
+</van-cell-group>
