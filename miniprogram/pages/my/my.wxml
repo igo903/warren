@@ -1,0 +1,11 @@
+<!--pages/my/my.wxml-->
+<view>
+  <view class="my-header">
+    <view class="userinfo">
+      <view class="username">{{ userInfo.nickName }}</view>
+      <view class="phone">152****12345</view>
+    </view>
+    <image src="{{userInfo.avatarUrl}}"></image>
+  </view>
+
+</view>

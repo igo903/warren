@@ -1,0 +1,48 @@
+/* pages/my/my.wxss */
+.my-header{
+  padding: 32rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #f1f1f1;
+}
+.my-header image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.my-header .username{
+  font-size: 36rpx;
+}
+.my-header .phone{
+  font-size: 24rpx;
+}
+
+/*  */
+.my-body{
+  width: 100%;
+}
+.my-body-item{
+  box-sizing: border-box;
+  padding: 32rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.my-body-item .icons{
+  width: 28rpx;
+  height: 28rpx;
+  background-color: red;
+  margin-right: 30rpx;
+}
+.my-body-item .title{
+  font-size: 28rpx;
+  line-height: 28rpx;
+  flex: 1;
+}
+.my-body-item .count{
+  width: 28rpx;
+  height: 28rpx;
+  background-color: red;
+}

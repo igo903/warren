@@ -1,6 +1,9 @@
 {
+  "component": true,
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index"
-  },
-  "enablePullDownRefresh": true
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-progress": "@vant/weapp/progress/index"
+  }
 }

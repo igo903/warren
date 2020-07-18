@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/my/my",
     "pages/detail/detail",
     "pages/cart/cart",
     "pages/addTodo/addTodo",
@@ -35,7 +36,7 @@
       "selectedIconPath": "/images/icons/vip_hover@3x.png",
       "text": "大会员"
     }, {
-      "pagePath": "pages/addTodo/addTodo",
+      "pagePath": "pages/my/my",
       "iconPath": "/images/icons/tabbar_icon_my_default.png",
       "selectedIconPath": "/images/icons/tabbar_icon_my_active.png",
       "text":"我的"
@@ -47,6 +48,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "云开发",
+    "navigationStyle": "custom",
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
