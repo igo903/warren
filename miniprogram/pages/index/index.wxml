@@ -39,13 +39,13 @@
     </view>
 
 
-    <view class="coupon" bindtap="addCusie">你有7张好礼券待领取</view>
+    <view class="coupon" bindtap="addDailySelected">你有7张好礼券待领取</view>
   </view>
 
   <button class="servant" open-type="contact">联系你的专属客服，领取折扣券</button>
 
   <view class="gate">
-    <view class="to">充值享好礼</view>
+    <view class="to" bindtap="toCharge">充值享好礼</view>
     <view class="to mid" bindtap="addTop">加入会员</view>
     <view class="to">立即点餐</view>
   </view>
@@ -55,7 +55,7 @@
 
     <!-- <block wx:for="{{tops}}" wx:key="id"> -->
       <view class="promo-item" wx:for="{{list}}" wx:key="id" id="{{item._id}}" bindtap="toDailyDetail">
-        <image src="{{item.image}}" mode="aspectFill"></image>
+        <image lazy-load="true" src="{{item.image}}" mode="aspectFill"></image>
         <view class="promo-title">{{item.title}}</view>
       </view>
 

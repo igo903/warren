@@ -22,6 +22,10 @@ Page({
     duration: 500
   },
 
+  onPullDownRefresh(){
+    this.getDaily()
+  },
+
   toDailyDetail(e){
     const id = e.currentTarget.id
     wx.navigateTo({
@@ -111,8 +115,7 @@ Page({
     
   },
 
-  addCusie:function(){
-
+  addDailySelected:function(){
     wx.chooseImage({
       count: 1,
       success: function(res){
@@ -142,13 +145,16 @@ Page({
         })
       }
     })
-
-    
   },
 
   bindGetUserInfo: function(e){
     console.log(e)
     userInfo: e.detail.userInfo
+  },
+  toCharge(){
+    wx.navigateTo({
+      url: '/pages/charging/charging',
+    })
   },
 
   onShareAppMessage:function(){},
