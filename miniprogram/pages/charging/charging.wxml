@@ -2,20 +2,21 @@
   <text class="title">充值</text>
   <view class="balance">
     <text>账户余额</text>
-    <text><text class="">10090.00</text>元</text>
+    <text><text class="num">10090.00</text> 元</text>
   </view>
 
-  <view >请选择充值金额</view>
+  <view class="h1">请选择充值金额</view>
   <view class="blocks">
-    <view class="amount" bindtap="selectAmount"><text>1000元</text><text class="desc">充800返现300</text></view>
-    <view class="amount mid"><text>500元</text><text class="desc">充500返现100</text></view>
-    <view class="amount"><text>300元</text><text class="desc">充300返现90</text></view>
-    <view class="amount"><text>200元</text><text class="desc">充200返现80</text></view>
-    <view class="amount mid"><text>100元</text><text class="desc">充100返现20</text></view>
-    <view class="amount"><text>50元</text><text class="desc">充50返现10</text></view>
+    <view class='{{num==1 ? "amount selected":"amount"}}' data-num="1" bindtap="selectAmount"><text class="h2">1000元</text><text class="desc">充800返现300</text></view>
+    <view class='{{num==2 ? "amount mid selected":"amount mid"}}' data-num="2" bindtap="selectAmount"><text class="h2">500元</text><text class="desc">充500返现100</text></view>
+    <view class='{{num==3 ? "amount selected":"amount"}}' data-num="3" bindtap="selectAmount"><text class="h2">300元</text><text class="desc">充300返现90</text></view>
+    <view class='{{num==4 ? "amount selected":"amount"}}' data-num="4" bindtap="selectAmount"><text class="h2">200元</text><text class="desc">充200返现80</text></view>
+    <view class='{{num==5 ? "amount mid selected":"amount mid"}}' data-num="5" bindtap="selectAmount"><text class="h2">100元</text><text class="desc">充100返现20</text></view>
+    <view class='{{num==6 ? "amount selected":"amount"}}' data-num="6" bindtap="selectAmount"><text class="h2">50元</text><text class="desc">充50返现10</text></view>
   </view>
 
-  <view class="btn">立即支付</view>
+
+  <view class="btn selected">立即支付</view>
 
 </view>
 
