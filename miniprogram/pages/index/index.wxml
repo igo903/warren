@@ -58,14 +58,5 @@
         <image lazy-load="true" src="{{item.image}}" mode="aspectFill"></image>
         <view class="promo-title">{{item.title}}</view>
       </view>
-
   </view>
-
-
-
 </view>
-
-
-
-<!-- <button type="primary" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
-<view wx:else>请升级微信版本</view> -->

@@ -2,7 +2,7 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -17,6 +17,7 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
@@ -69,9 +70,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/charging/charging",
-					"pathName": "pages/charging/charging",
+					"id": 2,
+					"name": "pages/order/order",
+					"pathName": "pages/order/order",
 					"query": "",
 					"scene": null
 				}

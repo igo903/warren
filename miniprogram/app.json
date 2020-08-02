@@ -4,6 +4,7 @@
     "pages/my/my",
     "pages/detail/detail",
     "pages/cart/cart",
+    "pages/order/order",
     "pages/charging/charging",
     "pages/addTodo/addTodo",
     "pages/todoInfo/todoInfo",
@@ -16,9 +17,8 @@
     "pages/openapi/openapi",
     "pages/openapi/serverapi/serverapi",
     "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room"
+    "pages/openapi/cloudid/cloudid"
+    
   ],
   "tabBar": {
     "custom": false,
