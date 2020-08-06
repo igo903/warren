@@ -47,7 +47,7 @@
   <view class="gate">
     <view class="to" bindtap="toCharge">充值享好礼</view>
     <view class="to mid" bindtap="addTop">加入会员</view>
-    <view class="to">立即点餐</view>
+    <view class="to" bindtap="toCart">立即点餐</view>
   </view>
 
   <view class="promo">

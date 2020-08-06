@@ -156,6 +156,12 @@ Page({
       url: '/pages/charging/charging',
     })
   },
+  toCart(){
+    wx.navigateTo({
+      url: '/pages/order/order',
+    })
+  },
+  
 
   onShareAppMessage:function(){},
 
