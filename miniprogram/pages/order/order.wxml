@@ -5,8 +5,8 @@
                 <view class="name {{categorySelected.id==category.id?'active':''}}">{{category.name}}</view>
             </view> -->
 
-            <view class="category {{categorySelected.id==category.id?'active':''}}" wx:for="{{categories}}" wx:key="id" id="{{item._id}}" bindtap="onCategoryClick"> 
-              <view class="name {{categorySelected.id==category.id?'active':''}}">{{item.category_name}}</view>
+            <view class="category {{categorySelected.id==category._id?'active':''}}" wx:for="{{categories}}" wx:for-item="category" wx:key="id" id="{{item._id}}" data-id="{{category._id}}" bindtap="onCategoryClick">
+              <view class="name {{categorySelected.id==category._id?'active':''}}">{{category.category_name}}</view>
             </view>
 
         </scroll-view>

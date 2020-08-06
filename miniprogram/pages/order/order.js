@@ -23,26 +23,52 @@ Page({
   },
 
   getCategory:function(){
+    var that = this
+    let categories = [];
+    let categoryName = '';
+    let categoryId = '';
+
     wx.showLoading({
       title: '加载中...',
     })
+
     db.collection('canteen').get({
-      success: res=>{
-        console.log(res.data)
-        this.setData({
-          categories: res.data
+      
+      complete: res=>{
+        const _curCategory = res.data.find(ele => {
+          return ele.id == this.data.categorySelected._id
         })
-        wx.hideLoading()
+        categoryName = _curCategory.category_name;
+        categoryId = _curCategory.id;
+        console.log(_curCategory)
+
+        for (let i = 0; i < res.data.length; i++) {
+          let item = res.data[i];
+          categories.push(item);
+          if (i == 0 && !this.data.categorySelected._id) {
+            categoryName = item.category_name;
+            categoryId = item._id;
+          }
+        }
+        this.setData({
+          categories: categories,
+          categorySelected: {
+            name: categoryName,
+            id: categoryId
+          }
+        })
+        console.log(this.data.categorySelected);
+        wx.hideLoading();
       }
     })
   },
 
   onCategoryClick: function(e) {
     var that = this;
-    var id = e.target.id;
-    console.log(e.target.id)
+    var id = e.target.dataset.id;
+    console.log(id)
     if (id === that.data.categorySelected.id) {
-      console.log(66666)
+      //console.log(that.data.categorySelected.id)
       that.setData({
         scrolltop: 0,
       })
@@ -50,8 +76,7 @@ Page({
       var categoryName = '';
       for (var i = 0; i < that.data.categories.length; i++) {
         let item = that.data.categories[i];
-        console.log()
-        if (item.id == id) {
+        if (item._id == id) {
           categoryName = item.category_name;
           break;
         }
@@ -64,6 +89,9 @@ Page({
         scrolltop: 0
       });
       //that.getGoodsList();
+
+      console.log(this.data.categorySelected)
+
     }
   },
 
