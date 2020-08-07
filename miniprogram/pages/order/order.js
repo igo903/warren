@@ -6,7 +6,8 @@ Page({
     categories: [],
     categorySelected: {
       name: '',
-      id: ''
+      id: '',
+      cid: ''
     },
     currentGoods: [],
     onLoadStatus: true,
@@ -37,7 +38,6 @@ Page({
       complete: res=>{
         console.log(res.data)
         const _curCategory = res.data.find(ele => {
-              console.log(ele.id)
               return ele.id == this.data.categorySelected._id
         })
         categoryName = _curCategory.category_name;
@@ -57,25 +57,29 @@ Page({
           categories: categories,
           categorySelected: {
             name: categoryName,
-            id: categoryId
+            id: categoryId,
+            cid: _curCategory.cid
           }
         })
-        console.log(this.data.categorySelected);
+        this.getGoodsList(_curCategory.cid)
+        console.log(categoryId, 'categoryId');
         wx.hideLoading();
       }
     })
-
-    this.getGoodsList()
+    
   },
 
-  getGoodsList:function(){
+  getGoodsList:function(id){
     wx.showLoading({
       title: '加载中...',
     })
+    console.log(id,123456789)
 
-    db.collection('canteen').get({
-      complete: res =>{
-        console.log(res.data)
+    db.collection('canteen').where({
+      cid: id
+    }).get({
+      success: res =>{
+        console.log(res.data, 'res')
         this.setData({
           currentGoods: res.data
         });
@@ -87,7 +91,7 @@ Page({
   onCategoryClick: function(e) {
     var that = this;
     var id = e.target.dataset.id;
-    console.log(id)
+    console.log(that.data)
     if (id === that.data.categorySelected.id) {
       //console.log(that.data.categorySelected.id)
       that.setData({
@@ -95,25 +99,24 @@ Page({
       })
     } else {
       var categoryName = '';
+      var cid = ''
       for (var i = 0; i < that.data.categories.length; i++) {
         let item = that.data.categories[i];
-        
         if (item._id == id) {
           categoryName = item.category_name;
-          console.log(categoryName)
+          cid = item.cid
           break;
         }
       }
       that.setData({
         categorySelected: {
           name: categoryName,
-          id: id
+          id: id,
+          cid: cid
         },
         scrolltop: 0
       });
-      that.getGoodsList();
-
-      console.log(this.data.categorySelected)
+      that.getGoodsList(cid);
     }
   },
 
