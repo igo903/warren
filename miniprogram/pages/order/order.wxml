@@ -35,7 +35,7 @@
             </view>
           </block>
 
-          <view class="goods" wx:for="{{categories}}" wx:key="id">
+          <view class="goods" wx:for="{{currentGoods}}" wx:key="id">
             <image mode="aspectFill" class="pic" src="{{item.image}}" data-id='{{item._id}}' bindtap="toDetailsTap">
             </image>
             <view class="name ellipsis" data-id='{{item._id}}' bindtap="toDetailsTap">{{item.title}}</view>

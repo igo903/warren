@@ -32,11 +32,13 @@ Page({
       title: '加载中...',
     })
 
-    db.collection('canteen').get({
-      
+    db.collection('category').get({
+
       complete: res=>{
+        console.log(res.data)
         const _curCategory = res.data.find(ele => {
-          return ele.id == this.data.categorySelected._id
+              console.log(ele.id)
+              return ele.id == this.data.categorySelected._id
         })
         categoryName = _curCategory.category_name;
         categoryId = _curCategory.id;
@@ -50,6 +52,7 @@ Page({
             categoryId = item._id;
           }
         }
+
         this.setData({
           categories: categories,
           categorySelected: {
@@ -70,13 +73,14 @@ Page({
       title: '加载中...',
     })
 
-    this.setData({
-      
+    db.collection('canteen').get({
+      complete: res =>{
+        console.log(res.data)
+        this.setData({
+          currentGoods: res.data
+        });
+      }
     })
-
-
-
-
     wx.hideLoading()
   },
 
