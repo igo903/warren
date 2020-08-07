@@ -61,6 +61,23 @@ Page({
         wx.hideLoading();
       }
     })
+
+    this.getGoodsList()
+  },
+
+  getGoodsList:function(){
+    wx.showLoading({
+      title: '加载中...',
+    })
+
+    this.setData({
+      
+    })
+
+
+
+
+    wx.hideLoading()
   },
 
   onCategoryClick: function(e) {
@@ -76,8 +93,10 @@ Page({
       var categoryName = '';
       for (var i = 0; i < that.data.categories.length; i++) {
         let item = that.data.categories[i];
+        
         if (item._id == id) {
           categoryName = item.category_name;
+          console.log(categoryName)
           break;
         }
       }
@@ -88,11 +107,16 @@ Page({
         },
         scrolltop: 0
       });
-      //that.getGoodsList();
+      that.getGoodsList();
 
       console.log(this.data.categorySelected)
-
     }
+  },
+
+  toDetailsTap: function(e) {
+    wx.navigateTo({
+      url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
+    })
   },
 
 
