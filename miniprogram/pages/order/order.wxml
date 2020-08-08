@@ -17,7 +17,7 @@
             <view class="line"></view>
           </view>
 
-          <block wx:for="{{categories}}" wx:key="id" wx:if="{{item.pid == categorySelected.id}}">
+          <block wx:for="{{categories}}" wx:key="id" wx:if="{{item.cid == categorySelected.id}}">
             <navigator url="/pages/goods/list?categoryId={{item.id}}">
               <view class="no-data medium-category">
                 <view class="line"></view>
@@ -42,6 +42,7 @@
             <view class='soldInfo'>
               <view class='good-price-box'>
                 <text class="price">¥{{item.price}}</text>
+                <van-icon name="add" size="20px"/>
               </view>
             </view>
             <view class='soldInfo'>
@@ -50,11 +51,14 @@
                 <text>评价 +{{item.gotScore}}积分</text>
               </view>
             </view>
-            <image data-id="{{item._id}}" bindtap="addShopCar" class="car" src="/images/icons/car.svg"></image>
+            <!-- <view class="addintoCart">
+              <van-icon name="add" />
+            </view> -->
+            <!-- <image data-id="{{item._id}}" bindtap="addShopCar" class="car" src="/images/icons/car.svg"></image> -->
           </view>
         </scroll-view>
 
-
+        <view class="cart-container"></view>
 
     </view>
   
