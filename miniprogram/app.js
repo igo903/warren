@@ -71,6 +71,7 @@ App({
     sysInfo:null,
     windowW:null,
     windowH:null,
+    wzCarts:[],
     carts:wx.getStorageSync('carts') || []
   }
 

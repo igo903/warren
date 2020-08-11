@@ -16,6 +16,25 @@ Page({
     skuCurGoods: undefined
   },
 
+  addCart:function(e){
+    const {item} = e.currentTarget.dataset
+    const i = app.globalData.wzCarts.findIndex(v =>v._id == item._id)
+    console.log(item)
+
+    if(i> -1){
+      app.globalData.wzCarts[i].num += 1
+    } else {
+      item.num = 1;
+      app.globalData.wzCarts.push(item)
+    }
+  },
+
+  onShow:function(){
+    this.setData({
+      wxCarts: app.globalData.wxCarts
+    })
+  },
+
   onLoad:function(options){
     wx.showShareMenu({
       withShareTicket: true
