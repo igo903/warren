@@ -62,9 +62,9 @@
         <view class="cart-container">
           <view class="circle">
             <van-icon name="bag" size="35px" color="#d81e06"/>
-            <view class="num">999</view>
+            <view class="num">{{totalNumber}}</view>
           </view>
-          <view class="sum">共计：￥<text>2970</text></view>
+          <view class="sum">共计：￥<text>{{totalPrice}}</text></view>
           <view class="pay">去结算</view>  
         </view>
 

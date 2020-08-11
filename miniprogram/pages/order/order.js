@@ -3,6 +3,7 @@ const db = wx.cloud.database()
 
 Page({
   data:{
+    carts:[],
     categories: [],
     categorySelected: {
       name: '',
@@ -12,27 +13,42 @@ Page({
     currentGoods: [],
     onLoadStatus: true,
     scrolltop: 0,
-
+    totalPrice:0,
+    totalNumber:0,
     skuCurGoods: undefined
+  },
+
+  getTotal(){
+    const total = this.data.reduce((sum, a)=>sum + a.price*a.num, 0)
+    this.setData({
+      total
+    })
   },
 
   addCart:function(e){
     const {item} = e.currentTarget.dataset
     const i = app.globalData.wzCarts.findIndex(v =>v._id == item._id)
-    console.log(item)
 
-    if(i> -1){
+    console.log(app.globalData.wzCarts[i])
+    //app.globalData.wzCarts[i].num += 1
+
+    if(i>-1){
       app.globalData.wzCarts[i].num += 1
     } else {
       item.num = 1;
       app.globalData.wzCarts.push(item)
     }
+    console.log(app.globalData.wzCarts)
+
   },
 
   onShow:function(){
+    console.log(app.globalData.wzCarts)
     this.setData({
-      wxCarts: app.globalData.wxCarts
+      carts: app.globalData.wzCarts
     })
+
+    //this.getTotal()
   },
 
   onLoad:function(options){
