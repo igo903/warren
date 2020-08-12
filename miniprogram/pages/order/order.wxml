@@ -41,9 +41,13 @@
             <view class="name ellipsis" data-id='{{item._id}}' bindtap="toDetailsTap">{{item.title}}</view>
             <view class='soldInfo'>
               <view class='good-price-box'>
-                <text class="price">¥{{item.price}} | {{item.num}}</text>
+                <text class="price">¥{{item.price}}</text>
+                
+                <van-icon wx:if="{{item.num > 0}}" name="checked" size="22px" catchtap="minusCart" data-item="{{item}}" data-index="{{index}}"/>
+
+                <text wx:if="{{item.num > 0}}" class="num">{{item.num}}</text>
                 <van-icon name="add" size="22px" catchtap="addCart" data-item="{{item}}" data-index="{{index}}"/>
-                <van-icon name="checked" size="22px" catchtap="minusCart" data-item="{{item}}" data-index="{{index}}"/>
+                
               </view>
             </view>
             <!-- <view class='soldInfo'>

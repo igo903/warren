@@ -55,7 +55,6 @@ Page({
     } else {
       currentGoods[index].num--
     }
-
     
     this.setData({
       currentGoods: currentGoods
@@ -68,8 +67,6 @@ Page({
       } else {
         app.globalData.wzCarts[i].num -= 1
       }
-
-      
     } else {
       item.num --;
       app.globalData.wzCarts.push(item)

@@ -133,7 +133,7 @@ page,view,image,input {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
   overflow: hidden;
   font-size: 22rpx;
   line-height: 22rpx;
@@ -143,9 +143,13 @@ page,view,image,input {
   color: #d81e06;
   margin-top: 10rpx;
   width: 120rpx;
-  font-size: 28rpx;
+  font-size: 32rpx;
   font-weight: bold;
   line-height: 40rpx;
+}
+.goods-container .goods .soldInfo .good-price-box .num {
+  color:#4a4a4a;
+  font-size: 28rpx;
 }
 
 .goods-container .goods .soldInfo .good-sales-box {
