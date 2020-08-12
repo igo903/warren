@@ -29,16 +29,6 @@ App({
     }
   },
 
-  setSumBar(){
-    var that = this
-    const len = this.globalData.carts.reduce((sum, a) => sum + a.num, 0)
-
-    if(len>0){
-      that.globalData.totalNumber += 1;
-    }
-
-  },
-
 
   //获取用户信息
   getUserInfo:function(cb){

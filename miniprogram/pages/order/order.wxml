@@ -42,8 +42,8 @@
             <view class='soldInfo'>
               <view class='good-price-box'>
                 <text class="price">¥{{item.price}} | {{item.num}}</text>
-                <van-icon name="add" size="22px" catchtap="addCart" data-item="{{item}}"/>
-                <van-icon name="checked" size="22px"/>
+                <van-icon name="add" size="22px" catchtap="addCart" data-item="{{item}}" data-index="{{index}}"/>
+                <van-icon name="checked" size="22px" catchtap="minusCart" data-item="{{item}}"/>
               </view>
             </view>
             <!-- <view class='soldInfo'>
@@ -65,13 +65,8 @@
             <view class="num">{{totalNumber}}</view>
           </view>
           <view class="sum">共计：￥<text>{{totalPrice}}</text></view>
-          <view class="pay">去结算</view>  
+          <view class="pay" bindtap="">去结算</view>  
         </view>
-
-        <!-- <van-submit-bar  price="{{ 3050 }}" button-text="提交订单" bind:submit="onSubmit"/> -->
-
-        
-
     </view>
   
 </view>

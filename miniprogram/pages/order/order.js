@@ -26,20 +26,39 @@ Page({
   },
 
   addCart:function(e){
-    const {item} = e.currentTarget.dataset
-    const i = app.globalData.wzCarts.findIndex(v =>v._id == item._id)
 
-    console.log(app.globalData.wzCarts[i])
+    const {item, index} = e.currentTarget.dataset
+    const i = app.globalData.wzCarts.findIndex(v =>v._id == item._id)
+    const currentGoods = JSON.parse(JSON.stringify(this.data.currentGoods))
+    currentGoods[index].num++
+    this.setData({
+      currentGoods: currentGoods
+    })
+    console.log(item, index)
     //app.globalData.wzCarts[i].num += 1
 
     if(i>-1){
       app.globalData.wzCarts[i].num += 1
     } else {
-      item.num = 1;
+      item.num ++;
       app.globalData.wzCarts.push(item)
     }
-    console.log(app.globalData.wzCarts)
+    this.totalNumberFn()
 
+  },
+  totalNumberFn: function () {
+    let total = 0
+    let totalPrice = 0
+    for (const item of app.globalData.wzCarts){
+      total += item.num
+      totalPrice += item.num * item.price
+    }
+    app.globalData.totalNumber = total
+    app.globalData.totalPrice = totalPrice
+    this.setData({
+      totalNumber: total,
+      totalPrice: totalPrice
+    })
   },
 
   onShow:function(){
@@ -47,6 +66,7 @@ Page({
     this.setData({
       carts: app.globalData.wzCarts
     })
+    this.totalNumberFn()
 
     //this.getTotal()
   },
@@ -108,16 +128,31 @@ Page({
     wx.showLoading({
       title: '加载中...',
     })
-    console.log(id,123456789)
 
     db.collection('canteen').where({
       cid: id
     }).get({
       success: res =>{
         console.log(res.data, 'res')
-        this.setData({
-          currentGoods: res.data
-        });
+        const goodsList = res.data
+        if(app.globalData.wzCarts.length === 0) {
+          this.setData({
+            currentGoods: goodsList
+          });
+        } else {
+          for (let item of goodsList) {
+            for (let ite of app.globalData.wzCarts) {
+              if (item._id === ite._id) {
+                item.num = ite.num
+                continue
+              }
+            }
+          }
+          this.setData({
+            currentGoods: goodsList
+          });
+        }
+        
       }
     })
     wx.hideLoading()
