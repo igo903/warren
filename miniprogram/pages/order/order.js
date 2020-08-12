@@ -35,7 +35,6 @@ Page({
       currentGoods: currentGoods
     })
     console.log(item, index)
-    //app.globalData.wzCarts[i].num += 1
 
     if(i>-1){
       app.globalData.wzCarts[i].num += 1
@@ -44,8 +43,42 @@ Page({
       app.globalData.wzCarts.push(item)
     }
     this.totalNumberFn()
+  },
+
+  minusCart: function(e){
+    const {item, index} = e.currentTarget.dataset
+    const i = app.globalData.wzCarts.findIndex(v =>v._id == item._id)
+    const currentGoods = JSON.parse(JSON.stringify(this.data.currentGoods))
+
+    if(currentGoods[index].num < 1){
+      currentGoods[index].num = 0
+    } else {
+      currentGoods[index].num--
+    }
+
+    
+    this.setData({
+      currentGoods: currentGoods
+    })
+    console.log(item, index)
+
+    if(i>-1){
+      if(app.globalData.wzCarts[i].num < 1){
+        app.globalData.wzCarts[i].num = 0
+      } else {
+        app.globalData.wzCarts[i].num -= 1
+      }
+
+      
+    } else {
+      item.num --;
+      app.globalData.wzCarts.push(item)
+    }
+    this.totalNumberFn()
 
   },
+
+
   totalNumberFn: function () {
     let total = 0
     let totalPrice = 0

@@ -43,7 +43,7 @@
               <view class='good-price-box'>
                 <text class="price">¥{{item.price}} | {{item.num}}</text>
                 <van-icon name="add" size="22px" catchtap="addCart" data-item="{{item}}" data-index="{{index}}"/>
-                <van-icon name="checked" size="22px" catchtap="minusCart" data-item="{{item}}"/>
+                <van-icon name="checked" size="22px" catchtap="minusCart" data-item="{{item}}" data-index="{{index}}"/>
               </view>
             </view>
             <!-- <view class='soldInfo'>
