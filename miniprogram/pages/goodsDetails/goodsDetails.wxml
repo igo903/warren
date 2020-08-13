@@ -1,0 +1,20 @@
+<!--pages/goodsDetails/goodsDetails.wxml-->
+<view class="container">
+  <image class="topImg" src="{{imgurl}}" ></image>
+  <view class="titleArea">
+    <view class="tag">人气</view>
+    <text class="title">沸腾毛血旺川辣爽</text>
+  </view>
+  <view class="notes">
+    <text>月销: 512</text>
+    <text>好评率: 92%</text>
+  </view>
+  <view class="depic">
+    <text>寒冷的冬天吃一锅热乎乎的毛血旺，又麻又辣有过瘾寒冷的冬天吃一锅热乎乎的毛血旺，又麻又辣有过瘾寒冷的冬天吃一锅热乎乎的毛血旺，又麻又辣有过瘾</text>
+    <image mode="aspectFill" class="pic"></image>
+  </view>
+</view>
+
+
+<text>{{id}}</text>
+

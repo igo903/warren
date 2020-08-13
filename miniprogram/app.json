@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/my/my",
     "pages/detail/detail",
+    "pages/goodsDetails/goodsDetails",
     "pages/cart/cart",
     "pages/order/order",
     "pages/charging/charging",

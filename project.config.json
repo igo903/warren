@@ -57,10 +57,11 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
+					"id": 0,
+					"name": "pages/goodsDetails/goodsDetails",
+					"pathName": "pages/goodsDetails/goodsDetails",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 1,

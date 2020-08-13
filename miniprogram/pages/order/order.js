@@ -72,7 +72,13 @@ Page({
       app.globalData.wzCarts.push(item)
     }
     this.totalNumberFn()
+  },
 
+  toDetailsTap: function(e) {
+    console.log(e.currentTarget)
+    wx.navigateTo({
+      url: "/pages/goodsDetails/goodsDetails?id=" + e.currentTarget.dataset.id
+    })
   },
 
 
@@ -193,7 +199,6 @@ Page({
     var id = e.target.dataset.id;
     console.log(that.data)
     if (id === that.data.categorySelected.id) {
-      //console.log(that.data.categorySelected.id)
       that.setData({
         scrolltop: 0,
       })
@@ -218,13 +223,8 @@ Page({
       });
       that.getGoodsList(cid);
     }
-  },
+  }
 
-  toDetailsTap: function(e) {
-    wx.navigateTo({
-      url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
-    })
-  },
 
 
 })

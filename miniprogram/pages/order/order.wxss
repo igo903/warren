@@ -117,6 +117,7 @@ page,view,image,input {
   font-size: 28rpx;
   line-height: 46rpx;
   font-weight: bold;
+  height:70rpx;
 }
 
 .goods-container .goods .soldInfo {
@@ -124,7 +125,7 @@ page,view,image,input {
   flex-direction: row;
   width: 350rpx;
   align-items: flex-start;
-  margin-top: 5rpx;
+  margin-top: 15rpx;
 }
 
 .goods-container .goods .soldInfo .good-price-box {
